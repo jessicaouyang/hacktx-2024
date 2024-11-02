@@ -2,27 +2,31 @@
 import Image from "next/image";
 import { ChatInput } from "./ui/chat/chat-input";
 import { useState } from "react";
+import { useChat } from "ai/react";
 
 const IrohChat = () => {
-  const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
-  const [inputValue, setInputValue] = useState("");
+  // const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
+  
+
+  const { messages, input, handleInputChange, handleSubmit} = useChat();
 
   const handleSendMessage = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      if (!inputValue.trim()) return;
-
+      if (!input.trim()) return;
+      handleSubmit()
       // Add user message
-      setMessages((prev) => [...prev, { role: "user", content: inputValue }]);
-      // TODO: Add API call here to get Iroh's response
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: "Sharing tea with a fascinating stranger is one of life's true delights.",
-        },
-      ]);
-      setInputValue("");
+      // setMessages((prev) => [...prev, { role: "user", content: inputValue }]);
+      // // TODO: Add API call here to get Iroh's response
+      // setMessages((prev) => [
+      //   ...prev,
+      //   {
+      //     role: "assistant",
+      //     content: "Sharing tea with a fascinating stranger is one of life's true delights.",
+      //   },
+      // ]);
+      // setInputValue("");
+
     }
   };
 
@@ -74,8 +78,8 @@ const IrohChat = () => {
         <ChatInput
           placeholder='Type a message...'
           className='bg-[#DEC5A1] border-none rounded-lg h-32 max-h-none text-amber-950 placeholder:text-amber-950/50 font-medium'
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={input}
+          onChange={(e) => handleInputChange(e)}
           onKeyDown={handleSendMessage}
         />
       </div>
