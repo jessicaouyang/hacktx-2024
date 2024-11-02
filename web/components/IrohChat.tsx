@@ -1,8 +1,31 @@
 "use client";
 import Image from "next/image";
 import { ChatInput } from "./ui/chat/chat-input";
+import { useState } from "react";
 
 const IrohChat = () => {
+  const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSendMessage = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      if (!inputValue.trim()) return;
+
+      // Add user message
+      setMessages((prev) => [...prev, { role: "user", content: inputValue }]);
+      // TODO: Add API call here to get Iroh's response
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: "Sharing tea with a fascinating stranger is one of life's true delights.",
+        },
+      ]);
+      setInputValue("");
+    }
+  };
+
   return (
     <div className='flex flex-col h-full p-4'>
       <Image
@@ -10,9 +33,39 @@ const IrohChat = () => {
         height={1000}
         width={1000}
         src={"/uncle-iroh-avatar.webp"}
-        className='h-96 w-96 mx-auto'
+        className='h-40 w-40 mx-auto'
       />
-      <div className='rounded-2xl mt-auto bg-[#AB7D4C] p-10 max-w-2xl mx-auto w-full'>
+
+      {/* Messages area - using flex-1 to take remaining space */}
+      <div className='flex-1 max-h-64 overflow-y-auto my-4 space-y-4'>
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+          >
+            {message.role === "assistant" && (
+              <Image
+                alt={"Iroh"}
+                height={1000}
+                width={1000}
+                src={"/uncle-iroh-avatar.webp"}
+                className='h-12 w-12 rounded-full mr-2'
+              />
+            )}
+            <div
+              className={`max-w-[80%] rounded-lg p-3 ${
+                message.role === "user"
+                  ? "bg-[#AB7D4C] text-white ml-4"
+                  : "bg-[#DEC5A1] text-amber-950"
+              }`}
+            >
+              {message.content}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className='rounded-2xl bg-[#AB7D4C] p-10 max-w-2xl mx-auto w-full mt-auto'>
         <div className='flex justify-between -mt-16 mb-2'>
           <span className='block text-5xl'>🍵</span>
           <span className='block text-7xl -mt-4'>🫖</span>
@@ -21,9 +74,9 @@ const IrohChat = () => {
         <ChatInput
           placeholder='Type a message...'
           className='bg-[#DEC5A1] border-none rounded-lg h-32 max-h-none text-amber-950 placeholder:text-amber-950/50 font-medium'
-          //   value={inputValue}
-          //   onChange={(e) => setInputValue(e.target.value)}
-          //   onKeyDown={handleKeyPress}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleSendMessage}
         />
       </div>
     </div>
