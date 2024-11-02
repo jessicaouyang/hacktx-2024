@@ -9,11 +9,10 @@ const ChatHistory = ({ messages }: { messages: Message[] }) => {
   return (
     <Popover>
       <PopoverTrigger disabled={messages.length === 0}>
-        <Button>History</Button>
+        <Button disabled={messages.length === 0}>History</Button>
       </PopoverTrigger>
-      <PopoverContent>
-        {" "}
-        <div className='flex-1 max-h-64 overflow-y-auto my-4 space-y-4'>
+      <PopoverContent className='rounded-2xl'>
+        <div className=' overflow-y-auto my-4 space-y-4'>
           {messages.map((message, index) => (
             <div
               key={index}
