@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { ChatInput } from "./ui/chat/chat-input";
 import { Message, useChat } from "ai/react";
@@ -45,31 +46,21 @@ const ChatHistory = ({ messages }: { messages: Message[] }) => {
 };
 
 const IrohChat = () => {
-  // const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
-
   const { messages, input, handleInputChange, handleSubmit } = useChat();
 
   const handleSendMessage = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       if (!input.trim()) return;
-      handleSubmit();
-      // Add user message
-      // setMessages((prev) => [...prev, { role: "user", content: inputValue }]);
-      // // TODO: Add API call here to get Iroh's response
-      // setMessages((prev) => [
-      //   ...prev,
-      //   {
-      //     role: "assistant",
-      //     content: "Sharing tea with a fascinating stranger is one of life's true delights.",
-      //   },
-      // ]);
-      // setInputValue("");
+      handleSubmit()
     }
   };
 
+  const response = messages.at(-1);
+  const sentMessage = messages.at(-2);
+
   return (
-    <div className='flex flex-col h-full p-4'>
+    <div className="flex flex-col h-full gap-10 p-4">
       <Image
         alt={"Iroh"}
         height={1000}
