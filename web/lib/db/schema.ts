@@ -1,10 +1,11 @@
 import {
   pgTableCreator,
+  text,
   timestamp,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
-const createTable = pgTableCreator((name) => `hack_tx_${name}`);
+const createTable = pgTableCreator((name) => `uncle_iroh_${name}`);
 
 const getCreatedAtColumn = () => timestamp("created_at").defaultNow().notNull();
 const getUpdatedAtColumn = () =>
@@ -12,3 +13,13 @@ const getUpdatedAtColumn = () =>
     .defaultNow()
     .$onUpdate(() => sql`current_timestamp`)
     .notNull();
+
+export const messageTable = createTable("messages", {
+  id: text("id").primaryKey(),
+  user_id: text("user_id").notNull(),
+  role: text("role").notNull(),
+  content: text("content").notNull(),
+  date: timestamp("date", { mode: "date" }).notNull(),
+  created_at: getCreatedAtColumn(),
+  updated_at: getUpdatedAtColumn(),
+});
