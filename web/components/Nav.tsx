@@ -23,12 +23,6 @@ export function Nav() {
           <Link href='#' className='text-white/75 hover:text-white' prefetch={false}>
             Home
           </Link>
-          <Link href='#about' className='text-white/75 hover:text-white' prefetch={false}>
-            About
-          </Link>
-          <Link href='#' className='text-white/75 hover:text-white' prefetch={false}>
-            Services
-          </Link>
         </nav>
         <div className='flex items-center gap-4'>
           <div className='hidden items-center gap-2 text-sm font-medium md:flex'>
@@ -51,20 +45,6 @@ export function Nav() {
                   prefetch={false}
                 >
                   Home
-                </Link>
-                <Link
-                  href='#'
-                  className='text-sm font-medium text-gray-500 hover:text-gray-900'
-                  prefetch={false}
-                >
-                  About
-                </Link>
-                <Link
-                  href='#'
-                  className='text-sm font-medium text-gray-500 hover:text-gray-900'
-                  prefetch={false}
-                >
-                  Services
                 </Link>
                 <Link
                   href='#'
