@@ -26,7 +26,7 @@ export default function ChatHistory({ messages }: { messages: Message[] }) {
       <SheetTrigger asChild disabled={messages.length === 0} className="mx-auto block">
         <Button disabled={messages.length === 0}>History</Button>
       </SheetTrigger>
-      <SheetContent className="rounded-2xl w-full max-w-xl" side={"left"}>
+      <SheetContent className="rounded-r-xl" side={"left"}>
         <SheetHeader>
             <SheetTitle>History</SheetTitle>
             <SheetDescription>Reflection reveals wisdom in the ripples of our past conversations.</SheetDescription>
