@@ -1,6 +1,8 @@
 "use client";
+
 import Image from "next/image";
 import { ChatInput } from "./ui/chat/chat-input";
+import { useCallback } from "react";
 import { Message, useChat } from "ai/react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "./ui/button";
@@ -45,38 +47,33 @@ const ChatHistory = ({ messages }: { messages: Message[] }) => {
 };
 
 const IrohChat = () => {
-  // const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
-
   const { messages, input, handleInputChange, handleSubmit } = useChat();
 
-  const handleSendMessage = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      if (!input.trim()) return;
-      handleSubmit();
-      // Add user message
-      // setMessages((prev) => [...prev, { role: "user", content: inputValue }]);
-      // // TODO: Add API call here to get Iroh's response
-      // setMessages((prev) => [
-      //   ...prev,
-      //   {
-      //     role: "assistant",
-      //     content: "Sharing tea with a fascinating stranger is one of life's true delights.",
-      //   },
-      // ]);
-      // setInputValue("");
-    }
-  };
+  const handleSendMessage = useCallback(
+    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      handleSubmit(e);
+      input.trim();
+    },
+    [input, handleSubmit]
+  );
+
+  const response = messages
+    .filter((message) => message.role === "assistant")
+    .at(-1);
+  const sentMessage = messages
+    .filter((message) => message.role === "user")
+    .at(-1);
 
   return (
-    <div className='flex flex-col h-full p-4'>
+    <div className="flex flex-col h-full gap-10 p-4">
       <Image
         alt={"Iroh"}
         height={1000}
         width={1000}
         src={"/uncle-iroh-avatar.webp"}
-        className='h-40 w-40 mx-auto'
+         className="h-96 w-fit mx-auto"
       />
+      {/* {response?.content} */}
       <div className='rounded-2xl bg-[#AB7D4C] p-10 max-w-2xl mx-auto w-full mt-auto'>
         <div className='flex justify-between -mt-16 mb-2'>
           <span className='block text-5xl'>🍵</span>
