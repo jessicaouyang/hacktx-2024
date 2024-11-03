@@ -8,6 +8,15 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function ChatHistory({ messages }: { messages: Message[] }) {
+  const renderedMessages = [
+    {
+      id: "first_question",
+      role: "assistant",
+      content:
+        "How is your spirit today? Perhaps a listening ear can help calm the waters of your mind.",
+    } satisfies Message,
+    ...messages,
+  ];
   return (
     <Popover>
       <PopoverTrigger asChild disabled={messages.length === 0}>
@@ -15,9 +24,9 @@ export default function ChatHistory({ messages }: { messages: Message[] }) {
       </PopoverTrigger>
       <PopoverContent className="rounded-2xl">
         <div className=" overflow-y-auto my-4 space-y-4">
-          {messages.map((message, index) => (
+          {renderedMessages.map((message) => (
             <div
-              key={index}
+              key={message.id}
               className={`flex ${
                 message.role === "user" ? "justify-end" : "justify-start"
               }`}
