@@ -1,8 +1,17 @@
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+// } from "@/components/ui/popover";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
 import { Message } from "ai/react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -18,11 +27,15 @@ export default function ChatHistory({ messages }: { messages: Message[] }) {
     ...messages,
   ];
   return (
-    <Popover>
-      <PopoverTrigger asChild disabled={messages.length === 0} className="mx-auto block">
+    <Sheet>
+      <SheetTrigger asChild disabled={messages.length === 0} className="mx-auto block">
         <Button disabled={messages.length === 0}>History</Button>
-      </PopoverTrigger>
-      <PopoverContent className="rounded-2xl w-full max-w-xl">
+      </SheetTrigger>
+      <SheetContent className="rounded-2xl w-full max-w-xl" side={"left"}>
+        <SheetHeader>
+            <SheetTitle>History</SheetTitle>
+            <SheetDescription>Reflection reveals wisdom in the ripples of our past conversations.</SheetDescription>
+        </SheetHeader>
         <div className=" overflow-y-auto my-4 space-y-4">
           {renderedMessages.map((message) => (
             <div
@@ -52,7 +65,7 @@ export default function ChatHistory({ messages }: { messages: Message[] }) {
             </div>
           ))}
         </div>
-      </PopoverContent>
-    </Popover>
+      </SheetContent>
+    </Sheet>
   );
 }
