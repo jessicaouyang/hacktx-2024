@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Button } from "@/components/ui/button";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import {
   BookOpenIcon,
   ChevronRightIcon,
@@ -7,6 +8,7 @@ import {
   ThumbsUpIcon,
   Flame,
 } from "lucide-react";
+import Link from "next/link";
 
 const star = (
   <svg
@@ -40,10 +42,21 @@ export default function Home() {
             </p>
             {/* Buttons */}
             <div className='mt-7 grid gap-3 w-full sm:inline-flex'>
-              <Button size={"lg"}>Get started</Button>
-              <Button variant={"outline"} size={"lg"}>
-                Github
-              </Button>
+              <SignedOut>
+                <SignInButton >
+                  <Button size={"lg"}>
+                    Get started
+                  </Button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <Link href="/chat">
+                  <Button size={"lg"}>
+                    Visit Iroh
+                  </Button>
+                </Link>
+              </SignedIn>
+
             </div>
             {/* End Buttons */}
             <div className='mt-6 lg:mt-10 grid grid-cols-2 gap-x-5'>
@@ -189,9 +202,7 @@ export default function Home() {
           <p className='text-balance text-center text-sm leading-loose text-muted-foreground md:text-left'>
             Built by Dhruv Arora, Jessica Ouyang, Rohit Anantha, Vrishank Viswanath . The source
             code is available on{" "}
-            <a
-              target='_blank'
-              rel='noreferrer'
+            <a href="https://github.com/jessicaouyang/hacktx-2024"
               className='font-medium underline underline-offset-4'
             >
               GitHub
