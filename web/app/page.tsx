@@ -30,7 +30,7 @@ export default function Home() {
               Uncle (AI)roh: The only advice you'll ever need
             </h1>
             <p className='mt-3 text-xl text-muted-foreground'>
-              Ask Uncle Iroh to help alleve any of your woes
+              Ask Uncle Iroh to help alleviate any of your woes
             </p>
             {/* Buttons */}
             <div className='mt-7 grid gap-3 w-full sm:inline-flex'>

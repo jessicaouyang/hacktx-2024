@@ -6,6 +6,7 @@ import { useChat } from "ai/react";
 import ChatHistory from "@/components/ChatHistory";
 import IrohImage from "@/components/IrohImage";
 import { motion } from "framer-motion"
+import {SignedIn, UserButton} from "@clerk/nextjs"
 
 const IrohChat = () => {
 
@@ -21,6 +22,8 @@ const IrohChat = () => {
     .at(-1);
 
   return (
+  <SignedIn>
+    <UserButton/>
     <div className="flex flex-col h-full gap-10 p-4">
       <IrohImage response={response} />
       <div className="max-w-2xl mx-auto w-full mt-auto">
@@ -64,6 +67,7 @@ const IrohChat = () => {
         </div>
       </div>
     </div>
+  </SignedIn>
   );
 };
 

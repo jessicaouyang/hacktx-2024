@@ -26,13 +26,7 @@ export default function RootLayout({
 
       <html lang='en'>
         <body className={cn(font.className)}>
-          <SignedOut>
-            <SignInButton/>
-          </SignedOut>
-          <SignedIn>
-            <UserButton/>
-          </SignedIn>
-        {children}
+          {children}
         </body>
       </html>
   </ClerkProvider>
