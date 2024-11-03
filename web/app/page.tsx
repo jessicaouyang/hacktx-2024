@@ -1,6 +1,12 @@
 import { Nav } from "@/components/Nav";
 import { Button } from "@/components/ui/button";
-import { BookOpenIcon, ChevronRightIcon, MessagesSquareIcon, ThumbsUpIcon } from "lucide-react";
+import {
+  BookOpenIcon,
+  ChevronRightIcon,
+  MessagesSquareIcon,
+  ThumbsUpIcon,
+  Flame,
+} from "lucide-react";
 
 const star = (
   <svg
@@ -20,7 +26,7 @@ const star = (
 
 export default function Home() {
   return (
-    <>
+    <div className='bg-orange-50 text-amber-950'>
       <Nav />
       <div className='container py-24 lg:py-32 mx-auto'>
         {/* Grid */}
@@ -95,18 +101,14 @@ export default function Home() {
           </div>
           {/* Col */}
           <div className='relative ms-4'>
-            <img
-              className='w-full rounded-md'
-              src='https://placehold.co/800x700'
-              alt='Image Description'
-            />
+            <img className='w-full rounded-md' src='/demo.png' alt='Image Description' />
           </div>
           {/* End Col */}
         </div>
         {/* End Grid */}
       </div>
       {/* Icon Blocks */}
-      <div className='container py-24 lg:py-32 mx-auto'>
+      <div id='about' className='container py-24 lg:py-32 mx-auto'>
         {/* Grid */}
         <div className='grid md:grid-cols-2 gap-12'>
           <div className='lg:w-3/4'>
@@ -182,6 +184,22 @@ export default function Home() {
         {/* End Grid */}
       </div>
       {/* End Icon Blocks */}
-    </>
+      <footer className='py-6 md:px-8 md:py-0'>
+        <div className='container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row'>
+          <p className='text-balance text-center text-sm leading-loose text-muted-foreground md:text-left'>
+            Built by Dhruv Arora, Jessica Ouyang, Rohit Anantha, Vrishank Viswanath . The source
+            code is available on{" "}
+            <a
+              target='_blank'
+              rel='noreferrer'
+              className='font-medium underline underline-offset-4'
+            >
+              GitHub
+            </a>
+            .
+          </p>
+        </div>
+      </footer>
+    </div>
   );
 }
