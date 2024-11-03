@@ -1,12 +1,14 @@
 "use client";
 import Image from "next/image";
 import { ChatInput } from "./ui/chat/chat-input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useChat } from "ai/react";
+import { motion } from "framer-motion"
 
 const IrohChat = () => {
   // const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
   
+  const [animate, setAnimate] = useState(false);
 
   const { messages, input, handleInputChange, handleSubmit} = useChat();
 
@@ -15,18 +17,7 @@ const IrohChat = () => {
       e.preventDefault();
       if (!input.trim()) return;
       handleSubmit()
-      // Add user message
-      // setMessages((prev) => [...prev, { role: "user", content: inputValue }]);
-      // // TODO: Add API call here to get Iroh's response
-      // setMessages((prev) => [
-      //   ...prev,
-      //   {
-      //     role: "assistant",
-      //     content: "Sharing tea with a fascinating stranger is one of life's true delights.",
-      //   },
-      // ]);
-      // setInputValue("");
-
+      setAnimate((prev) => !prev)
     }
   };
 
@@ -71,9 +62,20 @@ const IrohChat = () => {
 
       <div className='rounded-2xl bg-[#AB7D4C] p-10 max-w-2xl mx-auto w-full mt-auto'>
         <div className='flex justify-between -mt-16 mb-2'>
+          <motion.div
+            animate={{ x: animate ? 0 : -50, y: animate ? 0 : -25}}
+            transition ={{ease :"easeOut", duration: 2}}
+          >
           <span className='block text-5xl'>🍵</span>
+          </motion.div>
           <span className='block text-7xl -mt-4'>🫖</span>
+          <motion.div
+            animate={{ x: animate ? 50 : 0, y: animate ? -25 : 0}}
+            transition ={{ease :"easeOut", duration: 2}}
+          >
           <span className='block text-5xl'>🍵</span>
+          </motion.div>
+          
         </div>
         <ChatInput
           placeholder='Type a message...'
