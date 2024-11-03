@@ -1,5 +1,4 @@
 import { Message } from "ai/react";
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function IrohImage({ response }: { response?: Message }) {
