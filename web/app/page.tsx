@@ -28,7 +28,7 @@ const star = (
 
 export default function Home() {
   return (
-    <div className='bg-orange-50 text-amber-950'>
+    <div className='bg-orange-50 text-amber-950 h-screen'>
       <Nav />
       <div className='container py-24 lg:py-32 mx-auto'>
         {/* Grid */}
