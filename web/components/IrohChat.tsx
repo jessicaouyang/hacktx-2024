@@ -51,7 +51,7 @@ const IrohChat = () => {
 
           </div>
           <ChatInput
-            placeholder="Type a message..."
+            placeholder="Share your troubles, young one. What weighs upon your heart?..."
             className="bg-[#DEC5A1] border-none rounded-lg h-32 max-h-none text-amber-950 focus-visible:ring-0 placeholder:text-amber-950/50 font-medium mb-4"
             value={input}
             onChange={(e) => handleInputChange(e)}
