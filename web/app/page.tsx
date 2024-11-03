@@ -33,7 +33,7 @@ export default function Home() {
       <div className='container py-24 lg:py-32 mx-auto'>
         {/* Grid */}
         <div className='grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center'>
-          <div>
+          <div className='mx-8'>
             <h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>
               Uncle (AI)roh: The only advice you'll ever need
             </h1>
