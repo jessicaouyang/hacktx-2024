@@ -1,23 +1,40 @@
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
 import { Message } from "ai/react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function ChatHistory({ messages }: { messages: Message[] }) {
+  const renderedMessages = [
+    {
+      id: "first_question",
+      role: "assistant",
+      content:
+        "How is your spirit today? Perhaps a listening ear can help calm the waters of your mind.",
+    } satisfies Message,
+    ...messages,
+  ];
   return (
-    <Popover>
-      <PopoverTrigger asChild disabled={messages.length === 0}>
+    <Sheet>
+      <SheetTrigger asChild disabled={messages.length === 0} className="mx-auto block">
         <Button disabled={messages.length === 0}>History</Button>
-      </PopoverTrigger>
-      <PopoverContent className="rounded-2xl">
+      </SheetTrigger>
+      <SheetContent className="rounded-2xl w-full max-w-xl" side={"left"}>
+        <SheetHeader>
+            <SheetTitle>History</SheetTitle>
+            <SheetDescription>Reflection reveals wisdom in the ripples of our past conversations.</SheetDescription>
+        </SheetHeader>
         <div className=" overflow-y-auto my-4 space-y-4">
-          {messages.map((message, index) => (
+          {renderedMessages.map((message) => (
             <div
-              key={index}
+              key={message.id}
               className={`flex ${
                 message.role === "user" ? "justify-end" : "justify-start"
               }`}
@@ -43,7 +60,7 @@ export default function ChatHistory({ messages }: { messages: Message[] }) {
             </div>
           ))}
         </div>
-      </PopoverContent>
-    </Popover>
+      </SheetContent>
+    </Sheet>
   );
 }
