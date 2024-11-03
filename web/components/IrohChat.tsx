@@ -99,7 +99,11 @@ const IrohChat = () => {
             className="bg-[#DEC5A1] border-none rounded-lg h-32 max-h-none text-amber-950 placeholder:text-amber-950/50 font-medium mb-4"
             value={input}
             onChange={(e) => handleInputChange(e)}
-            onKeyDown={handleSendMessage}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey && !!input) {
+                handleSendMessage(e);
+              }
+            }}
           />
           <ChatHistory messages={messages} />
         </div>
