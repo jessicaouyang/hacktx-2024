@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { Plus_Jakarta_Sans as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
-
 import {
   ClerkProvider,
   SignInButton,
@@ -11,18 +9,6 @@ import {
   SignedOut,
   UserButton
 } from '@clerk/nextjs'
-
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 const font = FontSans({ subsets: ["latin"] });
 
