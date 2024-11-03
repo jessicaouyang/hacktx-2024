@@ -39,8 +39,8 @@ const IrohChat = () => {
             onChange={(e) => handleInputChange(e)}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey && !!input) {
-      handleSubmit(e);
-      input.trim();
+                handleSubmit(e);
+                input.trim();
               }
             }}
           />
