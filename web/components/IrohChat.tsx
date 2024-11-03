@@ -5,12 +5,12 @@ import { ChatInput } from "./ui/chat/chat-input";
 import { useCallback } from "react";
 import { Message, useChat } from "ai/react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 const ChatHistory = ({ messages }: { messages: Message[] }) => {
   return (
     <Popover>
-      <PopoverTrigger disabled={messages.length === 0}>
+      <PopoverTrigger asChild disabled={messages.length === 0}>
         <Button disabled={messages.length === 0}>History</Button>
       </PopoverTrigger>
       <PopoverContent className='rounded-2xl'>
