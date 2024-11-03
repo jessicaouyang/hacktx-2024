@@ -19,10 +19,19 @@ const IrohChat = ({
 }) => {
   const [animate, setAnimate] = useState(false);
 
-  const { messages, input,setInput, handleInputChange, handleSubmit } = useChat({
+  const {
+    messages,
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
+    setMessages,
+  } = useChat({
     initialMessages,
     onFinish(message) {
-      addMessage(message, userId).then((res) => {}).catch((err) => {});
+      addMessage(message, userId)
+        .then((res) => {})
+        .catch((err) => {});
     },
   });
 
@@ -88,18 +97,28 @@ const IrohChat = ({
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey && !!input) {
                   handleSubmit(e);
-                  setInput("")
+                  setInput("");
                   setAnimate((prev) => !prev);
-                  addMessage({
-                    id: nanoid(),
-                    role: "user",
-                    content: input,
-                    createdAt: new Date(),
-                  }, userId).then((res) => {}).catch((err) => {});
+                  addMessage(
+                    {
+                      id: nanoid(),
+                      role: "user",
+                      content: input,
+                      createdAt: new Date(),
+                    },
+                    userId
+                  );
                 }
               }}
             />
-            <ChatHistory messages={messages} />
+            <ChatHistory
+              messages={messages}
+              userId={userId}
+              onClear={() => {
+                setInput("");
+                setMessages([]);
+              }}
+            />
           </div>
         </div>
       </div>

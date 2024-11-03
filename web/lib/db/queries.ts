@@ -19,11 +19,15 @@ export async function getMessages(user_id: string): Promise<Message[]>{
 }
 
 export async function addMessage(message: Message, user_id: string) {
-  return await db.insert(messageTable).values({
+  await db.insert(messageTable).values({
     id: message.id,
     user_id: user_id,
     role: message.role,
     content: message.content,
     date: message.createdAt!,
   });
+}
+
+export async function clearMessages(user_id: string) {
+  await db.delete(messageTable).where(eq(messageTable.user_id, user_id));
 }
