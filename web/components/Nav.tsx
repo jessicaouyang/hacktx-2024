@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Toggle } from "@/components/ui/toggle";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Flame } from "lucide-react";
+import { SignedOut } from "@clerk/nextjs";
 
 export function Nav() {
   return (
@@ -31,7 +32,9 @@ export function Nav() {
         </nav>
         <div className='flex items-center gap-4'>
           <div className='hidden items-center gap-2 text-sm font-medium md:flex'>
-            <Button>Sign In</Button>
+            <SignedOut>
+              <Button>Sign In</Button>
+            </SignedOut>
           </div>
           <Sheet>
             <SheetTrigger asChild>

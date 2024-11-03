@@ -39,14 +39,14 @@ const IrohChat = () => {
               animate={{ x: animate ? 0 : -50, y: animate ? 0 : -25, rotate: animate ? 0 : -20 }}
               transition={{ ease: "easeOut", duration: 3 }}
             >
-              <span className='block text-5xl'>🍵</span>
+              <span className='block text-8xl'>🍵</span>
             </motion.div>
-            <span className='block text-7xl -mt-4'>🫖</span>
+            <span className='block text-8xl -mt-4'>🫖</span>
             <motion.div
               animate={{ x: animate ? 50 : 0, y: animate ? -25 : 0, rotate: animate ? 20 : 0}}
               transition={{ ease: "easeOut", duration: 3 }}
             >
-              <span className='block text-5xl'>🍵</span>
+              <span className='block text-8xl'>🍵</span>
             </motion.div>
 
           </div>
