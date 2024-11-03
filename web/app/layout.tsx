@@ -4,11 +4,7 @@ import { Plus_Jakarta_Sans as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import {
   ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+} from "@clerk/nextjs";
 
 const font = FontSans({ subsets: ["latin"] });
 
@@ -22,13 +18,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (<ClerkProvider>
-
-      <html lang='en'>
-        <body className={cn(font.className)}>
-          {children}
-        </body>
+  return (
+    <ClerkProvider>
+      <html lang="en">
+        <body className={cn(font.className)}>{children}</body>
       </html>
-  </ClerkProvider>
+    </ClerkProvider>
   );
 }
