@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Plus_Jakarta_Sans as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
 
 const font = FontSans({ subsets: ["latin"] });
 
@@ -15,9 +22,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang='en'>
-      <body className={cn(font.className)}>{children}</body>
-    </html>
+  return (<ClerkProvider>
+
+      <html lang='en'>
+        <body className={cn(font.className)}>
+          <SignedOut>
+            <SignInButton/>
+          </SignedOut>
+          <SignedIn>
+            <UserButton/>
+          </SignedIn>
+        {children}
+        </body>
+      </html>
+  </ClerkProvider>
   );
 }
