@@ -5,7 +5,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 
 import { Message } from "ai/react";
 import { Button } from "@/components/ui/button";
@@ -21,15 +21,22 @@ export default function ChatHistory({ messages }: { messages: Message[] }) {
     } satisfies Message,
     ...messages,
   ];
+
   return (
     <Sheet>
-      <SheetTrigger asChild disabled={messages.length === 0} className="mx-auto block">
+      <SheetTrigger
+        asChild
+        disabled={messages.length === 0}
+        className="mx-auto block"
+      >
         <Button disabled={messages.length === 0}>History</Button>
       </SheetTrigger>
-      <SheetContent className="rounded-r-xl" side={"left"}>
+      <SheetContent className="rounded-r-xl overflow-y-auto" side={"left"}>
         <SheetHeader>
-            <SheetTitle>History</SheetTitle>
-            <SheetDescription>Reflection reveals wisdom in the ripples of our past conversations.</SheetDescription>
+          <SheetTitle>History</SheetTitle>
+          <SheetDescription>
+            Reflection reveals wisdom in the ripples of our past conversations.
+          </SheetDescription>
         </SheetHeader>
         <div className=" overflow-y-auto my-4 space-y-4">
           {renderedMessages.map((message) => (
