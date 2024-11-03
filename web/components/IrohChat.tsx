@@ -3,54 +3,8 @@
 import Image from "next/image";
 import { ChatInput } from "./ui/chat/chat-input";
 import { useCallback } from "react";
-import { Message, useChat } from "ai/react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-
-const ChatHistory = ({ messages }: { messages: Message[] }) => {
-  return (
-    <Popover>
-      <PopoverTrigger asChild disabled={messages.length === 0}>
-        <Button disabled={messages.length === 0}>History</Button>
-      </PopoverTrigger>
-      <PopoverContent className="rounded-2xl">
-        <div className=" overflow-y-auto my-4 space-y-4">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex ${
-                message.role === "user" ? "justify-end" : "justify-start"
-              }`}
-            >
-              {message.role === "assistant" && (
-                <Image
-                  alt={"Iroh"}
-                  height={1000}
-                  width={1000}
-                  src={"/uncle-iroh-avatar.webp"}
-                  className="h-12 w-12 rounded-full mr-2"
-                />
-              )}
-              <div
-                className={`max-w-[80%] rounded-lg p-3 text-sm ${
-                  message.role === "user"
-                    ? "bg-[#AB7D4C] text-white ml-4"
-                    : "bg-[#DEC5A1] text-amber-950"
-                }`}
-              >
-                {message.content}
-              </div>
-            </div>
-          ))}
-        </div>
-      </PopoverContent>
-    </Popover>
-  );
-};
+import { useChat } from "ai/react";
+import ChatHistory from "@/components/ChatHistory";
 
 const IrohChat = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
@@ -79,7 +33,7 @@ const IrohChat = () => {
         src={"/uncle-iroh-avatar.webp"}
         className="h-96 w-fit mx-auto"
       />
-      {/* {response?.content} */}
+      {response?.content}
       <div className="max-w-2xl mx-auto w-full mt-auto">
         <div
           className={`rounded-lg p-3 mb-12 mx-10 text-sm bg-[#DEC5A1] border-[1.5px] border-[#AB7D4C] text-amber-950 ${
