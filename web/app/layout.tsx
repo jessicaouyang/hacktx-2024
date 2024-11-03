@@ -4,6 +4,15 @@ import "./globals.css";
 import { Plus_Jakarta_Sans as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -27,9 +36,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang='en'>
-      <body className={cn(font.className)}>{children}</body>
-    </html>
+  return (<ClerkProvider>
+
+      <html lang='en'>
+        <body className={cn(font.className)}>
+          <SignedOut>
+            <SignInButton/>
+          </SignedOut>
+          <SignedIn>
+            <UserButton/>
+          </SignedIn>
+        {children}
+        </body>
+      </html>
+  </ClerkProvider>
   );
 }
