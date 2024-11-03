@@ -19,10 +19,10 @@ export default function ChatHistory({ messages }: { messages: Message[] }) {
   ];
   return (
     <Popover>
-      <PopoverTrigger asChild disabled={messages.length === 0}>
+      <PopoverTrigger asChild disabled={messages.length === 0} className="mx-auto block">
         <Button disabled={messages.length === 0}>History</Button>
       </PopoverTrigger>
-      <PopoverContent className="rounded-2xl">
+      <PopoverContent className="rounded-2xl w-full max-w-xl">
         <div className=" overflow-y-auto my-4 space-y-4">
           {renderedMessages.map((message) => (
             <div
