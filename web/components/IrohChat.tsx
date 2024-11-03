@@ -1,21 +1,12 @@
 "use client";
 
 import { ChatInput } from "./ui/chat/chat-input";
-import { useCallback } from "react";
 import { useChat } from "ai/react";
 import ChatHistory from "@/components/ChatHistory";
 import IrohImage from "@/components/IrohImage";
 
 const IrohChat = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-
-  const handleSendMessage = useCallback(
-    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      handleSubmit(e);
-      input.trim();
-    },
-    [input, handleSubmit]
-  );
 
   const response = messages
     .filter((message) => message.role === "assistant")
@@ -48,7 +39,8 @@ const IrohChat = () => {
             onChange={(e) => handleInputChange(e)}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey && !!input) {
-                handleSendMessage(e);
+      handleSubmit(e);
+      input.trim();
               }
             }}
           />
