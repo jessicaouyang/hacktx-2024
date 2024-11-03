@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { ChatInput } from "./ui/chat/chat-input";
 import { useCallback } from "react";
 import { useChat } from "ai/react";
 import ChatHistory from "@/components/ChatHistory";
+import IrohImage from "@/components/IrohImage";
 
 const IrohChat = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
@@ -26,14 +26,7 @@ const IrohChat = () => {
 
   return (
     <div className="flex flex-col h-full gap-10 p-4">
-      <Image
-        alt={"Iroh"}
-        height={1000}
-        width={1000}
-        src={"/uncle-iroh-avatar.webp"}
-        className="h-96 w-fit mx-auto"
-      />
-      {response?.content}
+      <IrohImage response={response} />
       <div className="max-w-2xl mx-auto w-full mt-auto">
         <div
           className={`rounded-lg p-3 mb-12 mx-10 text-sm bg-[#DEC5A1] border-[1.5px] border-[#AB7D4C] text-amber-950 ${
