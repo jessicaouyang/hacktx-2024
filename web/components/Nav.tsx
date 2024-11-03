@@ -19,11 +19,6 @@ export function Nav() {
           <Flame className='h-6 w-6' />
           <span className='font-bold'>Uncle (AI)Roh</span>
         </Link>
-        <nav className='hidden items-center gap-6 text-sm font-medium md:flex'>
-          <Link href='#' className='text-white/75 hover:text-white' prefetch={false}>
-            Home
-          </Link>
-        </nav>
         <div className='flex items-center gap-4'>
           <div className='hidden items-center gap-2 text-sm font-medium md:flex'>
             <SignedOut>

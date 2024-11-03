@@ -35,7 +35,17 @@ const IrohChat = ({
 
   return (
     <SignedIn>
-      <UserButton />
+      <div
+        style={{
+          width: '70px',          // Customize as needed
+          height: '50px',         // Customize as needed
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <UserButton />
+      </div>
       <div className="flex flex-col h-full gap-10 p-4">
         <IrohImage response={response} />
         <div className="max-w-2xl mx-auto w-full mt-auto">
